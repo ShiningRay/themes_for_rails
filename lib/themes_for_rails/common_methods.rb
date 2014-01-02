@@ -67,10 +67,11 @@ module ThemesForRails
     protected
 
     def add_theme_sprockets_path
-      unless Rails.application.assets.paths.include?(theme_asset_path)
-        Rails.application.assets.prepend_path File.join(theme_asset_path, 'stylesheets')
-      end
-      puts Rails.application.assets.paths.inspect
+      ['stylesheets', 'javascripts', 'images'].each do |kind|
+        path = File.join(theme_asset_path, kind)
+        unless Rails.application.assets.paths.include?(path)
+            Rails.application.assets.prepend_path path
+        end
     end
 
   end
