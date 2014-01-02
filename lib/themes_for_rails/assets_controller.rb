@@ -28,6 +28,11 @@ module ThemesForRails
     end
     
     def find_themed_asset(asset_name, asset_theme, asset_type, &block)
+      puts asset_name
+      puts asset_theme
+      puts asset_type
+      raise 'x'
+
       if asset_type == 'stylesheets' 
         path = asset_stylesheets_path(asset_name, asset_theme, asset_type)
       else
