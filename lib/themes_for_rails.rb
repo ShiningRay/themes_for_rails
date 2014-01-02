@@ -53,7 +53,7 @@ require 'themes_for_rails/common_methods'
 require 'themes_for_rails/url_helpers'
 
 require 'themes_for_rails/action_view'
-require 'themes_for_rails/assets_controller'
+#require 'themes_for_rails/assets_controller'
 require 'themes_for_rails/action_controller'
 require 'themes_for_rails/action_mailer'
 require 'themes_for_rails/railtie'

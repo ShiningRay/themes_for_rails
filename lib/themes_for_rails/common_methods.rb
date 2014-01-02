@@ -24,6 +24,7 @@ module ThemesForRails
       self.theme_name = name
       if valid_theme?
         add_theme_view_path
+        add_theme_sprockets_path
       end
     end
     
@@ -62,5 +63,15 @@ module ThemesForRails
     def theme_asset_path_for(theme_name)
       interpolate(ThemesForRails.config.assets_dir, theme_name)
     end
+
+    protected
+
+    def add_theme_sprockets_path
+      unless Rails.application.assets.paths.include?(theme_asset_path)
+        Rails.application.assets.prepend_path File.join(theme_asset_path, 'stylesheets')
+      end
+      puts Rails.application.assets.paths.inspect
+    end
+
   end
 end
