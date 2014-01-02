@@ -72,6 +72,7 @@ module ThemesForRails
         unless Rails.application.assets.paths.include?(path)
             Rails.application.assets.prepend_path path
         end
+      end
     end
 
   end
