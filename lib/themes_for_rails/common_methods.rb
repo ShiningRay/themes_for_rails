@@ -24,7 +24,7 @@ module ThemesForRails
       self.theme_name = name
       if valid_theme?
         add_theme_view_path
-        add_theme_sprockets_path
+        #add_theme_sprockets_path
       end
     end
     
