@@ -19,7 +19,7 @@ module ThemesForRails
   private
     
     def handle_asset(prefix)
-      asset, theme = params[:asset], params[:theme]
+      asset, theme = File.basename(request.path_info), params[:theme]
       find_themed_asset(asset, theme, prefix) do |path, mime_type|
         response.headers['ETag'] = %("#{Digest::MD5.hexdigest(ActiveSupport::Cache.expand_cache_key(File.mtime(path).to_s + path))}")
         response.headers['Cache-Control'] = "public, max-age=2592000"
@@ -35,9 +35,9 @@ module ThemesForRails
       end
       if File.exists?(path)
         yield path, mime_type_for(request)
-      elsif File.extname(path) != extension_from(request.path_info)
-        asset_name = "#{asset_name}.#{extension_from(request.path_info)}"
-        return find_themed_asset(asset_name, asset_theme, asset_type, &block) 
+      # elsif File.extname(path) != extension_from(request.path_info)
+      #   asset_name = "#{asset_name}.#{extension_from(request.path_info)}"
+      #   return find_themed_asset(asset_name, asset_theme, asset_type, &block) 
       else
         render_not_found
       end
